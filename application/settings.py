@@ -74,16 +74,16 @@ WSGI_APPLICATION = 'application.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.mysql',
-#        'HOST': 'localhost',
-#        'NAME': 'pwasal3_CollegeAdvising',
-#        'USER': 'pwasal3_django',
-#        'PASSWORD': 'Django2019',
-#        'PORT': '3306',
-#    }
-# }
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.mysql',
+       'NAME': 'pwasal3_CollegeAdvising',
+       'USER': 'pwasal3_django',
+       'PASSWORD': 'Django2019',
+       'HOST': 'localhost',
+       'PORT': '3306',
+   }
+}
 
 
 
@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
 
