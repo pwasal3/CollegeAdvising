@@ -20,3 +20,6 @@ def updateSchoolName1(request):
 def updateSchoolName2(request):
     res = restoreSchoolName()
     return HttpResponse(res) 
+
+def profile(request):
+    return HttpResponse(render(request, 'profile.html'))
