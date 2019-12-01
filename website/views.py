@@ -23,3 +23,6 @@ def updateSchoolName2(request):
 
 def profile(request):
     return HttpResponse(render(request, 'profile.html'))
+
+def schoolApplied(request):
+    return HttpResponse(render(request, 'SchoolsApplied.html'))
