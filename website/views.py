@@ -26,3 +26,12 @@ def profile(request):
 
 def schoolApplied(request):
     return HttpResponse(render(request, 'SchoolsApplied.html'))
+
+def register(request):
+    return HttpResponse(render(request, 'register.html'))
+
+def login(request):
+    return HttpResponse(render(request, 'login.html'))
+
+def forgotPassword(request):
+    return HttpResponse(render(request, 'forgot-password.html'))
