@@ -28,10 +28,10 @@ def schoolApplied(request):
     return HttpResponse(render(request, 'SchoolsApplied.html'))
 
 def register(request):
-    return HttpResponse(render(request, '../static/register.html'))
+    return HttpResponse(render(request, 'register.html'))
 
 def login(request):
-    return HttpResponse(render(request, '../static/login.html'))
+    return HttpResponse(render(request, 'login.html'))
 
 def forgotPassword(request):
-    return HttpResponse(render(request, '../static/forgot-password.html'))
+    return HttpResponse(render(request, 'forgot-password.html'))
