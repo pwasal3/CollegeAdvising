@@ -12,7 +12,7 @@ from django.db import models
 #     votes = models.IntegerField(default=0)
 
 class Schools(models.Model):
-    id = models.IntegerField()
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=300)
 class User(models.Model):
     username = models.CharField(max_length=32)
