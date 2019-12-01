@@ -3,12 +3,24 @@ from django.db import connection
 from website.models import Schools, User
 
 def getSchools():
-    schools = Schools.objects.raw("select CollegeID, CollegeName from SCHOOL_INFO")
+    schools = Schools.objects.raw("select * from CollegeData")
     return list(schools)
 
 def getUsers():
     users = User.objects.raw("select * from users")
     return list(users)
+
+def updateSchoolName():
+    with connection.cursor() as cursor:
+        cursor.execute("UPDATE CollegeData SET name = 'U of SQL' WHERE id = 100663;COMMIT;") 
+        cursor.execute("Select * from CollegeData LIMIT 10;COMMIT;")
+        row = cursor.fetchall() 
+    return "test"
+
+def restoreSchoolName():
+    with connection.cursor() as cursor:
+        cursor.execute("UPDATE CollegeData SET name = 'University of Alabama at Birmingham' WHERE id = 100663;COMMIT;")
+    return "test"
 
 #def updateCollegeData():
 #    data = None
