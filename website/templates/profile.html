@@ -46,7 +46,8 @@
                                 <div class="nav-item dropdown no-arrow">
                                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false"
                                         href="#">
-                                        <span class="d-none d-lg-inline mr-2 text-gray-600 small"> {{currentUser.first_name}} {{currentUser.last_name}}</span>
+                                        <span class="d-none d-lg-inline mr-2 text-gray-600 small">
+                                            {{currentUser.first_name}} {{currentUser.last_name}}</span>
                                     </a>
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
 
@@ -105,45 +106,48 @@
                                         <div class="card-body">
                                             <form>
                                                 <div class="form-row">
+
                                                     <div class="col">
-                                                        <div class="form-group"><label for="username"><strong>First
+                                                        <div class="form-group"><label for="first_name"><strong>First
                                                                     Name</strong><br></label><input class="form-control"
-                                                                type="text" id="first_name" placeholder="Smith"
+                                                                type="text" placeholder="{{currentUser.first_name}}"
+                                                                name="first_name"></div>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="last_name"><strong>Last
+                                                                    Name</strong><br></label><input class="form-control"
+                                                                type="text" placeholder="{{currentUser.last_name}}"
                                                                 name="last_name"></div>
                                                     </div>
-                                                    <div class="col">
-                                                        <div class="form-group"><label for="email"><strong>Last
-                                                                    Name</strong><br></label><input class="form-control"
-                                                                type="text" id="last_name" placeholder="Smith"
-                                                                name="last_name"></div>
-                                                    </div>
+
                                                 </div>
+
                                                 <div class="form-row">
                                                     <div class="col">
-                                                        <div class="form-group"><label for="first_name"><strong>Email
+                                                        <div class="form-group"><label for="email"><strong>Email
                                                                     Address</strong></label><input class="form-control"
-                                                                type="email" id="user_email" placeholder="Smith"
-                                                                name="last_name"></div>
+                                                                type="email" placeholder="{{currentUser.email}}"
+                                                                name="email"></div>
                                                     </div>
                                                     <div class="col">
                                                         <div class="form-group"><label
-                                                                for="last_name"><strong>GPA</strong></label><input
-                                                                class="form-control" type="text" id="user_gpa"
-                                                                placeholder="3.60" name="GPA"></div>
+                                                                for="gpa"><strong>GPA</strong></label><input
+                                                                class="form-control" type="text" placeholder="3.60"
+                                                                name="gpa"></div>
                                                     </div>
                                                 </div>
                                                 <div class="form-row">
                                                     <div class="col">
-                                                        <div class="form-group"><label for="GPA"><strong>ACT
+                                                        <div class="form-group"><label for="act_score"><strong>ACT
                                                                     Score</strong><br></label><input
-                                                                class="form-control" type="text" id="user_act"
-                                                                placeholder="25" name="act_score"></div>
+                                                                class="form-control" type="text" placeholder="25"
+                                                                name="act_score"></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="form-group"><label for="last_name"><strong>SAT
+                                                        <div class="form-group"><label for="sat_score"><strong>SAT
                                                                     Score</strong></label><input class="form-control"
-                                                                type="text" id="user_sat" placeholder="1200"
-                                                                name="sat_score"></div>
+                                                                type="text" placeholder="1200" name="sat_score"></div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group"><button class="btn btn-primary btn-sm"
@@ -166,7 +170,8 @@
                                                 <div class="form-group"><label for="message">Message</label><textarea
                                                         class="form-control" id="subject_message"></textarea></div>
                                                 <div class="form-group"><button class="btn btn-primary btn-sm"
-                                                        id="add_btn" type="submit">Add</button></div>
+                                                        id="add_btn" >Add</button></div>
+
                                                 <div class="table-responsive border rounded shadow">
                                                     <table class="table">
                                                         <thead>
@@ -175,15 +180,12 @@
                                                                 <th>Description</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
+                                                        <tbody id="profileFirebaseTable">
                                                             <tr>
-                                                                <td>Cell 1</td>
-                                                                <td>Cell 2</td>
+                                                                <td>Title</td>
+                                                                <td>Description </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td>Cell 3</td>
-                                                                <td>Cell 4</td>
-                                                            </tr>
+                                                            
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -213,6 +215,56 @@
     <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
     <script src="{% static "assets/js/firebase.js" %}"></script>
+    <script>
+        console.log(firebase.app().name)
+        
+        function loadFirebaseProfile() {
+                var db = firebase.firestore();
+                var profileDoc = db.collection("profiles").doc("{{ currentUser.id }}");
+
+                profileDoc.get().then(function(doc) {
+                    if (doc.exists) {
+                        console.log("Profile data:", doc.data());
+                        updateFirebaseProfileTable(doc.data());
+                    } else {
+                        // doc.data() will be undefined in this case
+                        console.log("No Profile Data!");
+                    }
+                }).catch(function(error) {
+                    console.log("Error getting profile:", error);
+                });
+            }
+        
+        function updateFirebaseProfileTable(profileData) {
+            //$('#profileFirebaseTable')
+        }
+        
+        $(document).ready(function () {
+
+            
+            loadFirebaseProfile();
+            // db.collection("profiles").doc("{{currentUser.id}}").set({
+            //     first: "Ada",
+            //     last: "Lovelace",
+            //     born: 1815
+            // })
+            //     .then(function () {
+            //         console.log("Profile updated!");
+            //     })
+            //     .catch(function (error) {
+            //         console.error("Error updating profile: ", error);
+            //     });
+            // }
+
+            // $('#searchSchoolsBtn').on('click', function () {
+            //     stateCode = $('#stateInput').val();
+            //     $.get("search=0&inoutstate=0&state=" + stateCode + "&tuition=0&enrollment=0&degree=0&gender=0", function (data) {
+            //         $("#searchResults").html(data);
+            //         console.log("loaded schools");
+            //     });
+            });
+
+    </script>
 </body>
 
 </html>
