@@ -35,7 +35,7 @@ def getSchools(seachType, inorout, state, tuition, size, degree, gender):
     
     schoolsIn = Schools.objects.raw(query)
     #schoolsOut = Schools.objects.raw("select CollegeName, State, URL, TuitionOutState, Size, averageACT from SCHOOL_INFO")
-    return list(schoolsIn)
+    return list(schoolsIn), query
 
 def getUsers():
     users = User.objects.raw("select * from users")
