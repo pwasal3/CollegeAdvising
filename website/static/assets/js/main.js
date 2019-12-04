@@ -1,10 +1,31 @@
 
 
 $(document).ready(function() {
-
+  
   $('#searchSchoolsBtn').on('click', function() {
+    
+
+    var url = "search=0";
+
+    inOutState = $('#inOutInput').val();
+    url += "&inoutstate=" + inOutState;
+
     stateCode = $('#stateInput').val();
-    $.get( "search=0&inoutstate=0&state=" + stateCode + "&tuition=0&enrollment=0&degree=0&gender=0", function( data ) {
+    url += "&state=" + stateCode;
+
+    tuitionCode = $('#tuitionInput').val();
+    url += "&tuition=" + tuitionCode;
+
+    enrollmentCode = $('#sizeInput').val();
+    url += "&enrollment=" + enrollmentCode;
+
+    degreeCode = $('#degreeInput').val();
+    url += "&degree=" + degreeCode;
+
+    genderCode = $('#genderInput').val();
+    url += "&gender=" + genderCode;
+
+    $.get( url, function( data ) {
       $( "#searchResults" ).html( data );
       console.log("loaded schools");
     });

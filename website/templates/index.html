@@ -83,9 +83,10 @@
                                 <div class="col-md-6 text-nowrap"><label class="col-form-label">In/Out of State:
                                         &nbsp;<select
                                             class="form-control form-control-sm custom-select custom-select-sm"
-                                            style="width: 169px;">
-                                            <option value="10" selected="">In State</option>
-                                            <option value="">Out of State</option>
+                                            style="width: 169px;"
+                                            id = "inOutInput">
+                                            <option value="0" selected="">In State</option>
+                                            <option value="1">Out of State</option>
                                         </select>&nbsp;</label></div>
                                 <div class="col-md-6 text-nowrap"><label class="col-form-label"
                                         style="margin-top: 1px;">State Initials:&nbsp;<select
@@ -150,27 +151,30 @@
                             <div class="row">
                                 <div class="col-md-6 text-nowrap"><label class="col-form-label">Tuition: &nbsp;<select
                                             class="form-control form-control-sm custom-select custom-select-sm"
-                                            style="width: 169px;">
-                                            <option value="100000" selected="">No preference</option>
-                                            <option value="">&lt; $5,000</option>
-                                            <option value="">&lt; $20,000</option>
-                                            <option value="">&lt; $40,000</option>
+                                            style="width: 169px;"
+                                            id= "tuitionInput">
+                                            <option value="1000000" selected="">No preference</option>
+                                            <option value="5000">&lt; $5,000</option>
+                                            <option value="20000">&lt; $20,000</option>
+                                            <option value="40000">&lt; $40,000</option>
                                         </select>&nbsp;</label></div>
                                 <div class="col-md-6"><label class="col-form-label">School Size: &nbsp;<select
                                             class="form-control form-control-sm custom-select custom-select-sm"
-                                            style="width: 169px;">
-                                            <option value="100000" selected="">No preference</option>
-                                            <option value="">&lt; 2,000</option>
-                                            <option value="">&lt; 10,000</option>
-                                            <option value="">&lt; 20,000</option>
-                                            <option value="">&gt; 20,000</option>
+                                            style="width: 169px;"
+                                            id= "sizeInput">
+                                            <option value="999999" selected="">No preference</option>
+                                            <option value="2000">&lt; 2,000</option>
+                                            <option value="10000">&lt; 10,000</option>
+                                            <option value="20000">&lt; 20,000</option>
+                                            <option value="40000">&lt; 40,000</option>
                                         </select>&nbsp;</label></div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 text-nowrap"><label class="col-form-label"
                                         style="margin-top: 1px;">Highest Degree:<select
                                             class="form-control form-control-sm custom-select custom-select-sm"
-                                            style="width: 169px;margin-left: 8px;">
+                                            style="width: 169px;margin-left: 8px;"
+                                            id= "degreeInput">
                                             <option value="10" selected="">No preference</option>
                                             <option value="1">1 year school</option>
                                             <option value="2">2 year school</option>
@@ -179,10 +183,11 @@
                                         </select></label></div>
                                 <div class="col-md-6"><label class="col-form-label">Gender: &nbsp;<select
                                             class="form-control form-control-sm custom-select custom-select-sm"
-                                            style="width: 169px;">
+                                            style="width: 169px;"
+                                            gender= "genderInput">
                                             <option value="10" selected="">Co-ed</option>
-                                            <option value="">Male Only</option>
-                                            <option value="">Female Only</option>
+                                            <option value="0">Male Only</option>
+                                            <option value="1">Female Only</option>
                                         </select>&nbsp;</label></div>
                             </div>
                             <div class="table-responsive table mt-2" id="dataTable" role="grid"
