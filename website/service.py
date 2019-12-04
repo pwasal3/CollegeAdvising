@@ -32,6 +32,7 @@ def getSchools(seachType, inorout, state, tuition, size, degree, gender):
     elif(gender == "1"):
         query += "AND menOnly = 0 AND womenOnly = 1"
     
+    console.log(query)
     schoolsIn = Schools.objects.raw(query)
     #schoolsOut = Schools.objects.raw("select CollegeName, State, URL, TuitionOutState, Size, averageACT from SCHOOL_INFO")
     return list(schoolsIn)
