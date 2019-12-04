@@ -19,18 +19,18 @@ def getSchools(searchType, inorout, state, tuition, size, degree, gender):
     print(query)
     query += "AND size < {0} ".format(size)
 
-    if(degree == "1"):
+    if(degree == 1):
         query += "AND highestDegree = 1 "
-    elif(degree == "2"):
+    elif(degree == 2):
         query += "AND highestDegree = 2 "
-    elif(degree == "3"):
+    elif(degree == 3):
         query += "AND highestDegree = 3 "
-    elif(degree == "4"):
+    elif(degree == 4):
         query += "AND highestDegree = 4 "
 
-    if(gender == "0"):
+    if(gender == 0):
         query += "AND menOnly = 1 AND womenOnly = 0"
-    elif(gender == "1"):
+    elif(gender == 1):
         query += "AND menOnly = 0 AND womenOnly = 1"
     
     print(query)
