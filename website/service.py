@@ -75,6 +75,7 @@ def getUser(id):
     users = User.objects.raw("select * from users where id='{0}'".format(id))
     user = list(users)[0]
     return user
+
 #def updateCollegeData():
 #    data = None
 #    with open(ciphertext_filename) as f:

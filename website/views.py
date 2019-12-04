@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 
 from website.service import getSchools, getUsers, updateSchoolName, restoreSchoolName, registerUser, loginUser, getUser, getAppliedSchools
+from website.fireservice import readProfileFirebase
+from website.predict import filterByPrediction
 
 def index(request):
     if 'user' in request.session:
@@ -65,9 +67,15 @@ def logout(request):
 
 
 def searchSchools(request, searchType, inorout, state, tuition, size, degree, gender):
+    print("searchtype", searchType)
+    if not 'user' in request.session:
+        return HttpResponse(render(request, 'login.html'))
     print("searching schools")
+    userId = request.session['user']
     schools = getSchools(searchType, inorout, state, tuition, size, degree, gender)
     print("got schools")
+    profile = readProfileFirebase(userId)
+    schools = filterByPrediction(searchType, schools, profile)
     return HttpResponse(render(request, 'search.html', {'schools': schools}))
 
 def findApplied(request):
