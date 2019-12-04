@@ -3,7 +3,7 @@ from django.db import connection
 from website.models import Schools, User
 
 def getSchools(seachType, inorout, state, tuition, size, degree, gender):
-    schoolsIn = Schools.objects.raw("select * from SCHOOL_INFO")
+    schoolsIn = Schools.objects.raw("select * from CollegeData")
     #schoolsOut = Schools.objects.raw("select CollegeName, State, URL, TuitionOutState, Size, averageACT from SCHOOL_INFO")
     return list(schoolsIn)
 

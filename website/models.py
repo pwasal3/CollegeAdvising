@@ -12,12 +12,12 @@ from django.db import models
 #     votes = models.IntegerField(default=0)
 
 class Schools(models.Model):
-    CollegeName = models.CharField(max_length = 300)
-    State = models.CharField(max_length = 5)
-    URL = models.CharField(max_length = 300)
-    TuitionInState = models.IntegerField()
-    Size = models.IntegerField()
-    AverageACT = models.IntegerField()
+    name = models.CharField(max_length = 300)
+    state = models.CharField(max_length = 5)
+    url = models.CharField(max_length = 300)
+    tuitionInState = models.IntegerField()
+    size = models.IntegerField()
+    averageACT = models.IntegerField()
 
 class User(models.Model):
     username = models.CharField(max_length=32)
