@@ -16,7 +16,7 @@ def filterByPrediction(optimismType, schools, profile):
     act_score = 20 # default score if not specified
 
     if 'ACT Score' in profile:
-        act_score = int(profile['ACT Score']) + attributes_score
+        act_score = int(profile['ACT Score']) + attributes_score/2
         if(optimismType == 1):
             act_score -= 2
         elif(optimismType == 3):
