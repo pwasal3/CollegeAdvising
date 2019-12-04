@@ -14,6 +14,19 @@ def filterByPrediction(optimismType, schools, profile):
     
     attributes_score = len(profile)
     act_score = 20 # default score if not specified
+    sat_score = 1000
+    score = 0
+    if 'SAT Score' in profile:
+        sat_score = int(profile['SAT Score']) + attributes_score/2
+        sat_high = 1600
+        sat_low = sat_high - 30
+        score = 36
+        for i in range(36):
+            if sat_score < sat_high and sat_score > sat_low:
+                score = score - 1
+            sat_high -= 30
+            sat_low -= 30
+        
 
     if 'ACT Score' in profile:
         act_score = int(profile['ACT Score']) + attributes_score/2
