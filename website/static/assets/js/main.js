@@ -7,22 +7,22 @@ $(document).ready(function() {
 
     var url = "search=0";
 
-    inOutState = $('#inOutInput').val();
+    var inOutState = $('#inOutInput').val();
     url += "&inoutstate=" + inOutState;
 
-    stateCode = $('#stateInput').val();
+    var stateCode = $('#stateInput').val();
     url += "&state=" + stateCode;
 
-    tuitionCode = $('#tuitionInput').val();
+    var tuitionCode = $('#tuitionInput').val();
     url += "&tuition=" + tuitionCode;
 
-    enrollmentCode = $('#sizeInput').val();
+    var enrollmentCode = $('#sizeInput').val();
     url += "&enrollment=" + enrollmentCode;
 
-    degreeCode = $('#degreeInput').val();
+    var degreeCode = $('#degreeInput').val();
     url += "&degree=" + degreeCode;
 
-    genderCode = $('#genderInput').val();
+    var genderCode = $('#genderInput').val();
     url += "&gender=" + genderCode;
 
     $.get( url, function( data ) {
