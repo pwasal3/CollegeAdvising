@@ -12,8 +12,12 @@ from django.db import models
 #     votes = models.IntegerField(default=0)
 
 class Schools(models.Model):
-    id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=300)
+    name = models.CharField(max_length = 300)
+    state = models.CharField(max_length = 5)
+    url = models.CharField(max_length = 300)
+    tutionInState = models.IntegerField()
+    size = models.IntegerField()
+    averageACT = models.IntegerField()
 
 class User(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -21,3 +25,4 @@ class User(models.Model):
     last_name = models.CharField(max_length=64)
     email = models.CharField(max_length=128)
     passwordHash = models.CharField(max_length=58)
+

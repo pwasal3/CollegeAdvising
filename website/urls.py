@@ -4,7 +4,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name = 'index'),
-    path('allschools', views.all_schools, name = 'all_schools'),
     path('updateSchoolName', views.updateSchoolName1, name = 'updateSchoolName'),
     path('restoreSchoolName', views.updateSchoolName2, name = 'restoreSchoolName'),
     path('profile', views.profile, name = 'profile'),
@@ -12,4 +11,5 @@ urlpatterns = [
     path('login', views.login, name = 'login'),
     path('register', views.register, name = 'register'),
     path('logout', views.logout, name = 'logout'),
-]
+    path('search=<int:searchType>&inoutstate=<int:inorout>&state=<str:state>&tuition=<int:tuition>&enrollment=<int:size>&degree=<int:degree>&gender=<int:gender>', views.searchSchools, name = 'seachSchools')
+] 

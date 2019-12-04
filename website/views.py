@@ -12,12 +12,6 @@ def index(request):
         return HttpResponse(render(request, 'login.html'))
 
 # Create your views here.
-def all_schools(request):
-    users = getSchools()
-    res = ""
-    for user in users:
-        res += str(user.id) + ", " + user.name + "</br>" 
-    return HttpResponse(res)
 
 def updateSchoolName1(request):
     res = updateSchoolName()
@@ -68,3 +62,9 @@ def logout(request):
     if 'user' in request.session:
         del request.session['user']
     return redirect('login')
+
+
+def searchSchools(request, searchType, inorout, state, tuition, size, degree, gender):
+    schools = getSchools(searchType, inorout, state, tuition, size, degree, gender)
+
+    return HttpResponse(render(request, 'search.html', {'schools': schools}))
