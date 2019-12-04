@@ -73,4 +73,6 @@ def searchSchools(request, searchType, inorout, state, tuition, size, degree, ge
 def findApplied(request):
     userId = request.session['user']
     schools = getAppliedSchools(userId)
+    print("finding applications")
+    print(len(schools))
     return HttpResponse(render(request, 'find.html', {'schools': schools}))
