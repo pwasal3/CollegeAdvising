@@ -11,5 +11,6 @@ urlpatterns = [
     path('login', views.login, name = 'login'),
     path('register', views.register, name = 'register'),
     path('logout', views.logout, name = 'logout'),
-    path('search=<int:searchType>&inoutstate=<int:inorout>&state=<str:state>&tuition=<int:tuition>&enrollment=<int:size>&degree=<int:degree>&gender=<int:gender>', views.searchSchools, name = 'seachSchools')
+    path('search=<int:searchType>&inoutstate=<int:inorout>&state=<str:state>&tuition=<int:tuition>&enrollment=<int:size>&degree=<int:degree>&gender=<int:gender>', views.searchSchools, name = 'seachSchools'),
+    path('applied', views.findApplied, name = 'applied')
 ] 

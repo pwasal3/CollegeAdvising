@@ -110,5 +110,15 @@ $(document).ready(function() {
     });
   });
 
+
+  $('#findApplied').on('click', function() {
+    var url = "applied";
+
+    $.get( url, function( data ) {
+      $( "#searchResults" ).html( data );
+      console.log("loaded schools");
+    });
+  });
+
 });
 
