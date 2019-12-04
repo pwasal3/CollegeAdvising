@@ -161,22 +161,41 @@
                                         </div>
                                         <div class="card-body">
                                             <form>
-                                                <div class="form-group"><label for="subject">Subject</label><select
-                                                        class="form-control" id="user_subject">
-                                                        <option value="1">Extra Curriculars</option>
-                                                        <option value="2">Personal Statement</option>
-                                                        <option value="3">Hobbies</option>
-                                                    </select></div>
-                                                <div class="form-group"><label for="message">Message</label><textarea
-                                                        class="form-control" id="subject_message"></textarea></div>
-                                                <div class="form-group"><button class="btn btn-primary btn-sm"
-                                                        id="add_btn" >Add</button></div>
+                                                <div class="form-row">
+
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="title"><strong>Title</strong><br></label>
+                                                            <input class="form-control"
+                                                                type="text" placeholder="Title"
+                                                                id="title"
+                                                            >
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <div class="form-group"><label for="description"><strong>Description</strong><br></label>
+                                                                <input class="form-control"
+                                                                type="text" placeholder="Description"
+                                                                id="description"
+                                                                >
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </form>
+
+                                            <div class="row">
+                                                    <button class="btn btn-primary btn-sm"
+                                                        id="profileFirebaseUpdateBtn"
+                                                        style="margin-left: 20px; margin-bottom: 25px;"
+                                                        >Update</button>
+                                                </div>
 
                                                 <div class="table-responsive border rounded shadow">
                                                     <table class="table">
                                                         <thead>
                                                             <tr>
-                                                                <th>Subject</th>
+                                                                <th>Title</th>
                                                                 <th>Description</th>
                                                             </tr>
                                                         </thead>
@@ -185,11 +204,11 @@
                                                                 <td>Title</td>
                                                                 <td>Description </td>
                                                             </tr>
-                                                            
+
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                            </form>
+
                                         </div>
                                     </div>
                                 </div>
@@ -217,31 +236,38 @@
     <script src="{% static "assets/js/firebase.js" %}"></script>
     <script>
         console.log(firebase.app().name)
-        
-        function loadFirebaseProfile() {
-                var db = firebase.firestore();
-                var profileDoc = db.collection("profiles").doc("{{ currentUser.id }}");
 
-                profileDoc.get().then(function(doc) {
-                    if (doc.exists) {
-                        console.log("Profile data:", doc.data());
-                        updateFirebaseProfileTable(doc.data());
-                    } else {
-                        // doc.data() will be undefined in this case
-                        console.log("No Profile Data!");
-                    }
-                }).catch(function(error) {
-                    console.log("Error getting profile:", error);
-                });
-            }
-        
-        function updateFirebaseProfileTable(profileData) {
-            //$('#profileFirebaseTable')
+        function loadFirebaseProfile() {
+            var db = firebase.firestore();
+            var profileDoc = db.collection("profiles").doc("{{ currentUser.id }}");
+
+            profileDoc.get().then(function (doc) {
+                if (doc.exists) {
+                    console.log("Profile data:", doc.data());
+                    updateFirebaseProfileTable(doc.data());
+                } else {
+                    // doc.data() will be undefined in this case
+                    console.log("No Profile Data!");
+                }
+            }).catch(function (error) {
+                console.log("Error getting profile:", error);
+            });
         }
-        
+
+        function updateFirebaseProfileTable(profileData) {
+            $('#profileFirebaseTable').html("");
+            Object.entries(profileData).forEach(([key, value]) => {
+                console.log("key: " + key + ", value: " + value);
+                let keyHtml = "<td>" + key + "</td>";
+                let valueHtml = "<td>" + value + "</td>";
+                let rowHtml = "<tr>" + keyHtml + valueHtml + "</tr>"
+                $('#profileFirebaseTable').append(rowHtml);
+            });
+        }
+
         $(document).ready(function () {
 
-            
+
             loadFirebaseProfile();
             // db.collection("profiles").doc("{{currentUser.id}}").set({
             //     first: "Ada",
@@ -255,14 +281,33 @@
             //         console.error("Error updating profile: ", error);
             //     });
             // }
+            $("#profileFirebaseUpdateBtn").on('click', function () {
+                let title = $('#title').val();
+                let description = $('#description').val();
+                var db = firebase.firestore();
 
-            // $('#searchSchoolsBtn').on('click', function () {
-            //     stateCode = $('#stateInput').val();
-            //     $.get("search=0&inoutstate=0&state=" + stateCode + "&tuition=0&enrollment=0&degree=0&gender=0", function (data) {
-            //         $("#searchResults").html(data);
-            //         console.log("loaded schools");
-            //     });
+                if (description == '' || description == undefined) {
+                    console.log("deleting " + title);
+                    db.collection("profiles").doc("{{ currentUser.id }}").update({
+                        [title]: firebase.firestore.FieldValue.delete()
+                    }).then(function() {
+                        loadFirebaseProfile();
+                    });
+                    return;
+                }
+
+                db.collection("profiles").doc("{{ currentUser.id }}").set({
+                    [title]: description
+                }, { merge: true })
+                    .then(function () {
+                        loadFirebaseProfile();
+                    })
+                    .catch(function (error) {
+                        console.error("Error updating profile: ", error);
+                    });
             });
+
+        });
 
     </script>
 </body>
