@@ -4,7 +4,8 @@ from django.contrib.auth.hashers import make_password
 from website.models import Schools, User
 
 def getSchools(seachType, inorout, state, tuition, size, degree, gender):
-    schoolsIn = Schools.objects.raw("select * from CollegeData")
+    query = "SELECT * FROM CollegeData WHERE state = '" + state + "'"
+    schoolsIn = Schools.objects.raw(query)
     #schoolsOut = Schools.objects.raw("select CollegeName, State, URL, TuitionOutState, Size, averageACT from SCHOOL_INFO")
     return list(schoolsIn)
 
