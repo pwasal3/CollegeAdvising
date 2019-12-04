@@ -6,12 +6,6 @@ from website.service import getSchools, getUsers, updateSchoolName, restoreSchoo
 def index(request):
     return HttpResponse(render(request, 'index.html'))
 # Create your views here.
-def all_schools(request):
-    users = getSchools()
-    res = ""
-    for user in users:
-        res += str(user.id) + ", " + user.name + "</br>" 
-    return HttpResponse(res)
 
 def updateSchoolName1(request):
     res = updateSchoolName()
@@ -35,3 +29,8 @@ def login(request):
 
 def forgotPassword(request):
     return HttpResponse(render(request, 'forgot-password.html'))
+
+def searchSchools(request, searchType, inorout, state, tuition, size, degree, gender):
+    schools = getSchools(searchType, inorout, state, tuition, size, degree, gender)
+
+    return HttpResponse(render(request, 'search.html', {'schools': schools}))
