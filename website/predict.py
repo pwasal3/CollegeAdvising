@@ -22,9 +22,13 @@ def filterByPrediction(optimismType, schools, profile):
         sat_low = sat_high - 30
         score = 36
         for i in range(36):
-            if sat_score < sat_high and sat_score > sat_low:
-                score = score - 1
+            if sat_score <= sat_high and sat_score > sat_low:
+                if(optimismType == 1):
+                    score -= 2
+                elif(optimismType == 3):
+                    score += 2
                 break
+            score = score - 1
             sat_high -= 30
             sat_low -= 30
         
@@ -39,7 +43,7 @@ def filterByPrediction(optimismType, schools, profile):
     
     print("number of schools before prediction", len(schools))
 
-    if act_score >= sat_score:
+    if act_score >= score:
         score = act_score + attributes_score/2
     else:
         score = sat_score + attributes_score/2
