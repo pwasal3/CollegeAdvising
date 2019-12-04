@@ -12,9 +12,9 @@ def getSchools(seachType, inorout, state, tuition, size, degree, gender):
         query += "state <> '{0}' ".format("ZZ")
     
     if(inorout == "0"):
-        query += "AND tuitionInState < {0} ".format(tuition)
+        query += "AND tutionInState < {0} ".format(tuition)
     elif(inorout == "1"):
-        query += "AND tuitionOutState < {0} ".format(tuition)
+        query += "AND tutionOutState < {0} ".format(tuition)
     
     query += "AND size < {0} ".format(size)
 
