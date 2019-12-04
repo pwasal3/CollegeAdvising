@@ -21,7 +21,7 @@ def filterByPrediction(optimismType, schools, profile):
 
     if 'GPA' in profile:
         gpa_score = float(profile['GPA'])
-        gpa_score = int(gpa * 9)
+        gpa_score = int(gpa_score * 9)
         if(optimismType == 1):
             gpa_score -= 2
         elif(optimismType == 3):
