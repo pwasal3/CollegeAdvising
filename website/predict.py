@@ -41,7 +41,7 @@ def filterByPrediction(optimismType, schools, profile):
 
     if act_score >= sat_score:
         score = act_score + attributes_score/2
-    elif:
+    else:
         score = sat_score + attributes_score/2
 
     predictedSchools = []
