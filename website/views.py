@@ -65,6 +65,6 @@ def logout(request):
 
 
 def searchSchools(request, searchType, inorout, state, tuition, size, degree, gender):
-    schools = getSchools(searchType, inorout, state, tuition, size, degree, gender)
+    schools, query = getSchools(searchType, inorout, state, tuition, size, degree, gender)
 
-    return HttpResponse(render(request, 'search.html', {'schools': schools}))
+    return HttpResponse(render(request, 'search.html', {'schools': schools, 'query': query}))
