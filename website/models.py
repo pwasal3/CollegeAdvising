@@ -30,3 +30,17 @@ class User(models.Model):
     email = models.CharField(max_length=128)
     passwordHash = models.CharField(max_length=58)
 
+class Application(models.Model):
+    # fields from college data table
+    name = models.CharField(max_length = 300)
+    state = models.CharField(max_length = 5)
+    url = models.CharField(max_length = 300)
+    tutionInState = models.IntegerField()
+    tutionOutState = models.IntegerField()
+    size = models.IntegerField()
+    highestDegree = models.IntegerField()
+    menOnly = models.IntegerField()
+    womenOnly = models.IntegerField()
+    averageACT = models.IntegerField()
+    # fields from applications tables
+    status = models.IntegerField()

@@ -13,6 +13,7 @@ def filterByPrediction(optimismType, schools, profile):
     if 'ACT Score' in profile:
         act_score = int(profile['ACT Score'])
     print("number of schools before prediction", len(schools))
+
     predictedSchools = []
     for school in schools:
         if school.averageACT == None:
@@ -20,5 +21,6 @@ def filterByPrediction(optimismType, schools, profile):
         if act_score >= school.averageACT:
             print("comparison", act_score, school.averageACT)
             predictedSchools.append(school)
+            
     print("number of schools after prediction", len(predictedSchools))
     return predictedSchools

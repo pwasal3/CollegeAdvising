@@ -1,7 +1,7 @@
 from django.db import connection
 from django.contrib.auth.hashers import make_password
 
-from website.models import Schools, User
+from website.models import Schools, User, Application
 
 def getSchools(searchType, inorout, state, tuition, size, degree, gender):
     query = "SELECT * FROM CollegeData WHERE "
@@ -35,10 +35,10 @@ def getSchools(searchType, inorout, state, tuition, size, degree, gender):
     return list(schoolsIn)
 
 def getAppliedSchools(userId):
-    query = "SELECT * FROM CollegeData NATURAL JOIN Applications WHERE id = {0} ".format(userId)
+    query = "SELECT * FROM CollegeData c INNER JOIN applications a ON a.userID = {0} and c.id = a.collegeID".format(userId)
 
-    schools = Schools.objects.raw(query)
-    return list(schools)
+    applications = Application.objects.raw(query)
+    return list(applications)
 
 def getUsers():
     users = User.objects.raw("select * from users")

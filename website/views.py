@@ -31,10 +31,15 @@ def profile(request):
         return HttpResponse(render(request, 'login.html'))
 
 def schoolApplied(request):
-    if 'user' in request.session:
-        return HttpResponse(render(request, 'SchoolsApplied.html'))
-    else:
+    if not 'user' in request.session:
         return HttpResponse(render(request, 'login.html'))
+        
+    userId = request.session['user']
+    user = getUser(userId)
+    schools = getAppliedSchools(userId)
+
+    print("num schools applied to",len(schools))
+    return HttpResponse(render(request, 'SchoolsApplied.html', {'schools': schools, 'currentUser': user }))
 
 def register(request):
     if request.method == 'GET':
@@ -70,17 +75,12 @@ def searchSchools(request, searchType, inorout, state, tuition, size, degree, ge
     print("searchtype", searchType)
     if not 'user' in request.session:
         return HttpResponse(render(request, 'login.html'))
-    print("searching schools")
+
     userId = request.session['user']
-    schools = getSchools(searchType, inorout, state, tuition, size, degree, gender)
-    print("got schools")
     profile = readProfileFirebase(userId)
+    
+    print("searching schools")
+    schools = getSchools(searchType, inorout, state, tuition, size, degree, gender)
+    
     schools = filterByPrediction(searchType, schools, profile)
     return HttpResponse(render(request, 'search.html', {'schools': schools}))
-
-def findApplied(request):
-    userId = request.session['user']
-    schools = getAppliedSchools(userId)
-    print("finding applications")
-    print(len(schools))
-    return HttpResponse(render(request, 'find.html', {'schools': schools}))
