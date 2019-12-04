@@ -15,7 +15,7 @@ class Schools(models.Model):
     name = models.CharField(max_length = 300)
     state = models.CharField(max_length = 5)
     url = models.CharField(max_length = 300)
-    tuitionInState = models.IntegerField()
+    tutionInState = models.IntegerField()
     size = models.IntegerField()
     averageACT = models.IntegerField()
 
