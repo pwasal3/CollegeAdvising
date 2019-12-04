@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 
-from website.service import getSchools, getUsers, updateSchoolName, restoreSchoolName, registerUser, loginUser, getUser
+from website.service import getSchools, getUsers, updateSchoolName, restoreSchoolName, registerUser, loginUser, getUser, getAppliedSchools
 
 def index(request):
     if 'user' in request.session:
@@ -69,3 +69,8 @@ def searchSchools(request, searchType, inorout, state, tuition, size, degree, ge
     schools = getSchools(searchType, inorout, state, tuition, size, degree, gender)
     print("got schools")
     return HttpResponse(render(request, 'search.html', {'schools': schools}))
+
+def findApplied(request):
+    userId = request.session['user']
+    schools = getAppliedSchools(userId)
+    return HttpResponse(render(request, 'find.html', {'schools': schools}))

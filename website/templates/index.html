@@ -66,17 +66,18 @@
                         <div class="card-header py-3">
                             <p class="text-primary m-0 font-weight-bold">School Info
                                 <button class="btn btn-success"
-                                    id = "searchSchoolsBtn"
+                                    id = "searchSchools"
                                     style="width: 150px;margin: 5px;margin-left: 7px;background-color: rgb(28,190,200);">Search
                                     Schools</button>
 
                                     <button class="btn btn-success" 
-                                    style="width: 200px;margin: 5px;margin-left: 1px;">Search Safety Schools</button>
+                                    style="width: 200px;margin: 5px;margin-left: 1px;"
+                                    id = "searchSafety">Search Safety Schools</button>
                                 <button class="btn btn-success"
-                                    style="width: 200px;margin: 5px;margin-left: 0px;background-color: rgb(28,107,200);">Search
-                                    Match Schools</button><button class="btn btn-success" 
-                                    style="width: 200px;margin: 5px;margin-left: 1px;background-color: rgb(200,28,49);">Search
-                                    Reach Schools</button></p>
+                                    style="width: 200px;margin: 5px;margin-left: 0px;background-color: rgb(28,107,200);"
+                                    id = "searchMatch">Search Match Schools</button><button class="btn btn-success" 
+                                    style="width: 200px;margin: 5px;margin-left: 1px;background-color: rgb(200,28,49);"
+                                    id = "searchReach">Search Reach Schools</button></p>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -198,20 +199,16 @@
                                             <th>School Name</th>
                                             <th>State</th>
                                             <th>Website</th>
-                                            <th>Tuition</th>
+                                            <th>TuitionInState</th>
+                                            <th>TuitionOutState</th>
                                             <th>Size</th>
+                                            <th>HighestDegree</th>
+                                            <th>menOnly</th>
+                                            <th>womenOnly</th>
                                             <th>Average ACT</th>
                                         </tr>
                                     </thead>
                                     <tbody id="searchResults">
-                                        <tr>
-                                            <td>School</th>
-                                            <td>State</td>
-                                            <td>Website</td>
-                                            <td>Tuition</td>
-                                            <td>Size</td>
-                                            <td>ACT</td>
-                                        </tr>
                                         
                                     </tbody>
                                    
