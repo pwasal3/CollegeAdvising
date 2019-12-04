@@ -16,8 +16,20 @@ def filterByPrediction(optimismType, schools, profile):
     act_score = 20 # default score if not specified
     sat_score = 20
     score = 0
+    gpa_score = 20
+
+
+    if 'GPA' in profile:
+        gpa_score = float(profile['GPA'])
+        gpa_score = int(gpa * 9)
+        if(optimismType == 1):
+            gpa_score -= 2
+        elif(optimismType == 3):
+            gpa_score += 2
+
+
     if 'SAT Score' in profile:
-        sat_score = int(profile['SAT Score']) + attributes_score/2
+        sat_score = int(profile['SAT Score'])
         sat_high = 1600
         sat_low = sat_high - 30
         score = 36
@@ -43,10 +55,12 @@ def filterByPrediction(optimismType, schools, profile):
     
     print("number of schools before prediction", len(schools))
 
-    if act_score >= score:
-        score = act_score + attributes_score/2
+    if act_score >= score and act_score >= gpa_score:
+        score = act_score + attributes_score/3
+    elif score >= gpa_score and score >= act_score:
+        score = sat_score + attributes_score/3
     else:
-        score = sat_score + attributes_score/2
+        score = gpa_score + attributes_score/3
 
     predictedSchools = []
     for school in schools:
