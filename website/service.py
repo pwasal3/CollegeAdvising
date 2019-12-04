@@ -34,6 +34,12 @@ def getSchools(searchType, inorout, state, tuition, size, degree, gender):
     schoolsIn = Schools.objects.raw(query)
     return list(schoolsIn)
 
+def getAppliedSchools(userId):
+    query = "SELECT * FROM CollegeData NATURAL JOIN Applications WHERE id = {0} ".format(userId)
+
+    schools = Schools.objects.raw(query)
+    return list(schools)
+
 def getUsers():
     users = User.objects.raw("select * from users")
     return list(users)
