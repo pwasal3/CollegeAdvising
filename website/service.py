@@ -7,23 +7,23 @@ def getSchools(seachType, inorout, state, tuition, size, degree, gender):
     
     query = "SELECT * FROM CollegeData"
     if(state != "--"):
-        query += "WHERE state = '{0}'".format(state)
+        query += "WHERE state = '{0}' ".format(state)
     
     if(inorout == "0"):
-        query += "AND WHERE tuitionInState < {0}".format(tuition)
+        query += "AND WHERE tuitionInState < {0} ".format(tuition)
     elif(inorout == "1"):
-        query += "AND WHERE tuitionOutState < {0}".format(tuition)
+        query += "AND WHERE tuitionOutState < {0} ".format(tuition)
     
-    query += "AND WHERE size < {0}".format(size)
+    query += "AND WHERE size < {0} ".format(size)
 
     if(degree == "1"):
-        query += "AND WHERE highestDegree = 1"
+        query += "AND WHERE highestDegree = 1 "
     elif(degree == "2"):
-        query += "AND WHERE highestDegree = 2"
+        query += "AND WHERE highestDegree = 2 "
     elif(degree == "3"):
-        query += "AND WHERE highestDegree = 3"
+        query += "AND WHERE highestDegree = 3 "
     elif(degree == "4"):
-        query += "AND WHERE highestDegree = 4"
+        query += "AND WHERE highestDegree = 4 "
 
     if(gender == "0"):
         query += "AND WHERE menOnly = 1 AND womenOnly = 0"
