@@ -18,6 +18,9 @@ class Schools(models.Model):
     tutionInState = models.IntegerField()
     tutionOutState = models.IntegerField()
     size = models.IntegerField()
+    highestDegree = models.IntegerField()
+    menOnly = models.IntegerField()
+    womenOnly = models.IntegerField()
     averageACT = models.IntegerField()
 
 class User(models.Model):
