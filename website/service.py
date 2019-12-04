@@ -5,7 +5,7 @@ from website.models import Schools, User
 
 def getSchools(seachType, inorout, state, tuition, size, degree, gender):
     
-    query = "SELECT * FROM CollegeData WHERE"
+    query = "SELECT * FROM CollegeData WHERE "
     if(state != "--"):
         query += "state = '{0}' ".format(state)
     else:
