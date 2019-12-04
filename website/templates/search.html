@@ -1,0 +1,20 @@
+<!-- 
+1. Urls.py -> views.py
+2. Search.html = Django templating
+3. Views.py (combination of 3 things, creates hrml from template, Calls function in service.py, will return school models, sends the models to html)
+
+-->
+
+<tbody>
+    {% for school in SCHOOL_INFO %}
+    <tr>
+        <td>{{ school.schoolName }}</td>
+        <td>{{ school.state }}</td>
+        <td>{{ school.site }}</td>
+        <td>{{ school.tuition }}</td>
+        <td>{{ school.size }}</td>
+        <td>{{ school.actScore }}</td>
+    
+    </tr>
+    {% endfor %}
+</tbody>

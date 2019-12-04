@@ -11,5 +11,6 @@ urlpatterns = [
     path('schoolsApplied', views.schoolApplied, name = 'schoolsApplied'),
     path('login', views.login, name = 'login'),
     path('register', views.register, name = 'register'),
-    path('forgotPassword', views.forgotPassword, name = 'forgotPassword')
+    path('forgotPassword', views.forgotPassword, name = 'forgotPassword'),
+    path('search=<int:type>&inoutstate=<int:inorout>&state=<str:state>&tuition=<int:tuition>&enrollment=<int:size>&degree=<int:degree>&gender=<int:gender>', views.getSchools, name = 'allSchools')
 ] 

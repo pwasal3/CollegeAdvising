@@ -2,9 +2,10 @@ from django.db import connection
 
 from website.models import Schools, User
 
-def getSchools():
-    schools = Schools.objects.raw("select * from CollegeData")
-    return list(schools)
+def getSchools(type, inorout, state, tuition, size, degree, gender):
+    schoolsIn = Schools.objects.raw("select CollegeName, State, URL, TuitionInState, Size, averageACT from SCHOOL_INFO")
+    #schoolsOut = Schools.objects.raw("select CollegeName, State, URL, TuitionOutState, Size, averageACT from SCHOOL_INFO")
+    return list(schoolsIn)
 
 def getUsers():
     users = User.objects.raw("select * from users")
