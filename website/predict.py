@@ -1,6 +1,9 @@
 
 
 def filterByPrediction(optimismType, schools, profile):
+    if(optimismType == 0):
+        return schools
+    
     print("predicting")
     if schools == None:
         print("No Schools To Filter!")
@@ -8,10 +11,17 @@ def filterByPrediction(optimismType, schools, profile):
     if profile == None:
         print("No Profile Data!")
         return schools
-
+    
+    
     act_score = 20 # default score if not specified
+
     if 'ACT Score' in profile:
         act_score = int(profile['ACT Score'])
+        if(optimismType == 1):
+            act_score -= 2
+        elif(optimismType == 3):
+            act_score += 2
+    
     print("number of schools before prediction", len(schools))
     predictedSchools = []
     for school in schools:
