@@ -3,19 +3,20 @@ from django.contrib.auth.hashers import make_password
 
 from website.models import Schools, User
 
-def getSchools(seachType, inorout, state, tuition, size, degree, gender):
-    
+def getSchools(searchType, inorout, state, tuition, size, degree, gender):
+    print("starting query")
     query = "SELECT * FROM CollegeData WHERE "
     if(state != "--"):
         query += "state = '{0}' ".format(state)
     else:
         query += "state <> '{0}' ".format("ZZ")
-    
-    if(inorout == "0"):
+    print("inorout", inorout)
+
+    if(inorout == 0):
         query += "AND tutionInState < {0} ".format(tuition)
-    elif(inorout == "1"):
+    elif(inorout == 1):
         query += "AND tutionOutState < {0} ".format(tuition)
-    
+    print(query)
     query += "AND size < {0} ".format(size)
 
     if(degree == "1"):
@@ -32,10 +33,9 @@ def getSchools(seachType, inorout, state, tuition, size, degree, gender):
     elif(gender == "1"):
         query += "AND menOnly = 0 AND womenOnly = 1"
     
-    
+    print(query)
     schoolsIn = Schools.objects.raw(query)
-    #schoolsOut = Schools.objects.raw("select CollegeName, State, URL, TuitionOutState, Size, averageACT from SCHOOL_INFO")
-    return list(schoolsIn), query
+    return list(schoolsIn)
 
 def getUsers():
     users = User.objects.raw("select * from users")
